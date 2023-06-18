@@ -11,7 +11,7 @@ class CampaignsV2ContactsPool(
     
     @property
     def search(self):
-        return base.QueryPool(
+        return base.ActionPool(
             urljoin(self._endpoint, 'search'), self._session
         )
     
