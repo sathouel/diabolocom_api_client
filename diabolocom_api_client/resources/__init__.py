@@ -37,6 +37,14 @@ class VoiceV2Pool(
             urljoin(self._endpoint, 'campaigns'), self._session
         )
 
+class PhoneNumberV1Poll(
+    base.ResourcePool
+):
+    @property
+    def phone_numbers(self):
+        return base.QueryPool(
+            urljoin(self._endpoint, 'phone-numbers'), self._session
+        )
 class V1Pool(
     base.ResourcePool
 ):
@@ -50,6 +58,12 @@ class V1Pool(
     def account(self):
         return AccountPool(
             urljoin(self._endpoint, 'account'), self._session
+        )
+    
+    @property
+    def phone_number(self):
+        return PhoneNumberV1Poll(
+            urljoin(self._endpoint, 'phone-number'), self._session
         )
 
 class V2Pool(
