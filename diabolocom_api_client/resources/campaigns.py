@@ -1,6 +1,16 @@
 from . import base
 from diabolocom_api_client.utils import urljoin
 
+
+class CampaignsV2ContactsSearchPool(
+    base.ResourcePool,
+    base.CreatableResource,
+):
+    @property
+    def by_phone(self):
+        return base.ActionPool(
+            urljoin(self._endpoint, 'by-phone'), self._session
+        )
 class CampaignsV2ContactsPool(
     base.ResourcePool,
     base.GettableResource,
@@ -11,7 +21,7 @@ class CampaignsV2ContactsPool(
     
     @property
     def search(self):
-        return base.ActionPool(
+        return CampaignsV2ContactsSearchPool(
             urljoin(self._endpoint, 'search'), self._session
         )
     
